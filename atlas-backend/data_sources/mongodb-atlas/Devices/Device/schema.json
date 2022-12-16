@@ -4,8 +4,5 @@
             "bsonType": "string"
         }
     },
-    "required": [
-        "_id"
-    ],
-    "title": "device"
+    "title": "Device"
 }
