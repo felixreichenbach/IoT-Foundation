@@ -1,6 +1,7 @@
 import Realm from "realm";
 import express from 'express';
 
+// Define your data model.
 export const DeviceSchema = {
     name: 'Device',
     properties: {
@@ -49,7 +50,7 @@ express_app.get('/:id', (req, res) => {
 })
 
 express_app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`IoT app listening on port ${port}`)
 })
 
 function exists(id) {
@@ -57,8 +58,8 @@ function exists(id) {
     console.log("Requested: " + id);
     console.log("Found: " + JSON.stringify(result));
     if (result) {
-        return "OK";
+        return "TRUE";
     } else {
-        return "NOK";
+        return "FALSE";
     }
 }
