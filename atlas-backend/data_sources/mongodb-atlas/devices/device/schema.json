@@ -1,0 +1,11 @@
+{
+    "properties": {
+        "_id": {
+            "bsonType": "string"
+        }
+    },
+    "required": [
+        "_id"
+    ],
+    "title": "device"
+}
