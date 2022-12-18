@@ -5,8 +5,14 @@ Change into the device-js directory.
 Run application with:
 `node index.js`
 
-Call the following URL and add your ID:
-`http://localhost:3000/<YOUR ID>`
+Call the following URL and register <YOUR ID>:
+`http://localhost:3000/register/<YOUR ID>`
+
+Call the following URL and remove your registration:
+`http://localhost:3000/unregister/<YOUR ID>`
+
+Call the following URL and test if registration exists:
+`http://localhost:3000/exists/<YOUR ID>`
 
 Docker Image:
 
