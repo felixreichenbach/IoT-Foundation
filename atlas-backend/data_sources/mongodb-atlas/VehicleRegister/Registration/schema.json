@@ -1,0 +1,9 @@
+{
+    "bsonType": "object",
+    "properties": {
+        "_id": {
+            "bsonType": "string"
+        }
+    },
+    "title": "Registration"
+}
