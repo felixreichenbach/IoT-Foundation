@@ -1,0 +1,64 @@
+### Register a Device
+
+#Request
+GET http://localhost:3000/register/TN10BJ8856
+
+# Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 20
+ETag: W/"14-nsaMe/nV7ubrA7Su7dVY/q/cYLk"
+Date: Mon, 19 Dec 2022 13:47:35 GMT
+Connection: close
+
+{
+  "_id": "TN10BJ8856"
+}
+
+### Un Register a Device
+
+#Request
+http://localhost:3000/unregister/TN10BJ8856
+
+#Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Date: Tue, 20 Dec 2022 07:31:33 GMT
+Connection: close
+Content-Length: 0
+
+
+
+### Existance of a Device - Success Case
+
+#Request
+http://localhost:3000/exists/TN10BJ8856
+
+#Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 4
+ETag: W/"4-/d8d98MMrHkI0QJGJW79JkznqjI"
+Date: Tue, 20 Dec 2022 07:32:33 GMT
+Connection: close
+
+TRUE
+
+
+### Existance of a Device - Failure Case
+
+#Request
+http://localhost:3000/exists/TN10BJ8858
+
+#Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: text/html; charset=utf-8
+Content-Length: 5
+ETag: W/"5-DtLXtc23die8Rsb6xQJuwntpTUI"
+Date: Tue, 20 Dec 2022 07:33:24 GMT
+Connection: close
+
+FALSE

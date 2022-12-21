@@ -7,6 +7,13 @@
     "is_recovery_mode_disabled": false,
     "permissions": {
         "rules": {},
-        "defaultRoles": []
+        "defaultRoles": [
+            {
+                "name": "read-write",
+                "applyWhen": {},
+                "read": true,
+                "write": true
+            }
+        ]
     }
 }

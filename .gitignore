@@ -2,3 +2,5 @@
 atlas-backend/user.txt
 device-js/node_modules/
 device-js/mongodb-realm/
+
+.env

@@ -1,8 +1,9 @@
 {
+    "bsonType": "object",
     "properties": {
         "_id": {
             "bsonType": "string"
         }
     },
-    "title": "Device"
+    "title": "Registration"
 }

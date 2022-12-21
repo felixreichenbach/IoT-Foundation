@@ -1,8 +1,8 @@
 {
-    "app_id": "iot-foundation-auhka",
+    "app_id": "iot-foundation-homib",
     "config_version": 20210101,
     "name": "IoT-Foundation",
-    "location": "IE",
-    "provider_region": "aws-eu-west-1",
+    "location": "IN-MB",
+    "provider_region": "aws-ap-south-1",
     "deployment_model": "LOCAL"
 }
