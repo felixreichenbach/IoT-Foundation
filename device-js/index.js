@@ -1,6 +1,7 @@
 import Realm from "realm";
 import express from 'express';
-
+import DotEnv from 'dotenv';
+DotEnv.config()
 // Define your data model.
 export const RegistrationSchema = {
     name: 'Registration',
@@ -10,9 +11,10 @@ export const RegistrationSchema = {
     primaryKey: '_id',
 };
 
+console.log(`Connection to ${process.env.REALM_APP_ID} App`)
 // Initialize your App.
 const realm_app = new Realm.App({
-    id: "iot-foundation-auhka",
+    id: process.env.REALM_APP_ID,
 });
 
 // Authenticate an anonymous user.
