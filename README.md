@@ -34,6 +34,21 @@ npm install
 node index.js
 ```
 
+# Docker 
+
+### Build a Docker Image
+
+To Build the NodeJS application into a docker image.
+
+```
+cd device-js/
+docker build . -t device-image
+```
+
+Run the Built docker image with the following command. Set the Env variable, replace with your realm app id.
+```
+docker run -it --rm -d -p 3000:3000 -e REALM_APP_ID=<REALM_APP_ID> --name device-service device-image
+```
 
 # API Documentation
 
@@ -106,20 +121,4 @@ Date: Tue, 20 Dec 2022 07:33:24 GMT
 Connection: close
 
 FALSE
-```
-
-#Docker 
-
-### Build a Docker Image
-
-To Build the NodeJS application into a docker image.
-
-```
-cd device-js/
-docker build . -t device-image
-```
-
-Run the Built docker image with the following command. Set the Env variable, replace with your realm app id.
-```
-docker run -it --rm -d -p 3000:3000 -e REALM_APP_ID=<REALM_APP_ID> --name device-service device-image
 ```
