@@ -1,7 +1,7 @@
 
-# IOT Reference 
+# IoT Reference 
 
-This project demonstract simple way to setup a Mognodb Realm as a Database for a NodeJS application and consume Data via RESTFul API's. This projects can be built as a Docker Image and deployed on any docker supported IOT Environment.
+This project demonstract simple way to setup Mongodb Realm as an embedded database for a NodeJS application and consume Data via RESTFul API's. This projects can be built as a Docker Image and deployed on any docker supported IoT Environment.
 
 # Installation Setup
 The project requires few prerequsites to be setup and configured. 
