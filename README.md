@@ -14,7 +14,7 @@ The project requires few prerequsites to be setup and configured.
 
 
 
-# Run NodeJS Express Server
+# Run Application Locally
 
 Change into the `device-js` directory.
 ```
