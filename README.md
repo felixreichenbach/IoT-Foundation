@@ -3,7 +3,7 @@
 
 This project demonstract simple way to setup Mongodb Realm as an embedded database for a NodeJS application and consume Data via RESTFul API's. This projects can be built as a Docker Image and deployed on any docker supported IoT Environment.
 
-**_NOTE:_**  There is currently an [Issue](https://github.com/realm/realm-swift/issues/8092) with an expired certificate Replace 
+**_NOTE:_**  There is currently an [Issue](https://github.com/realm/realm-swift/issues/8092) with an expired certificate therefore replace 
 `RUN npm install` with `RUN NODE_TLS_REJECT_UNAUTHORIZED=0 npm ci` inside the Docker file.
 
 # Installation Setup
