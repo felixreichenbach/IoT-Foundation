@@ -21,7 +21,7 @@ Change into the `device-js` directory.
 cd device-js/
 ```
 
-Create a .env file on the `device-js` directory.
+Replace <REALM_APP_ID> in the .env file in the `device-js` directory.
 
 ```
 REALM_APP_ID=<REALM_APP_ID>
@@ -52,12 +52,12 @@ docker run -it --rm -d -p 3000:3000 -e REALM_APP_ID=<REALM_APP_ID> --name device
 
 # API Documentation
 
-## Register a new Device.
+## Create a new Model.
 
-Call the following URL and register <YOUR ID>:
+Call the following URL and create <YOUR ID>:
 ```
 #Request
-GET http://localhost:3000/register/TN10BJ8856
+GET http://localhost:3000/model/create/TN10BJ8856
 
 # Response
 HTTP/1.1 200 OK
@@ -73,26 +73,12 @@ Connection: close
 }
 ```
 
-Call the following URL and remove your existing device <YOUR ID>:
-
+Call the following URL and test if the model exists <YOUR ID>:
 ```
-#Request
-http://localhost:3000/unregister/TN10BJ8856
-
-#Response
-HTTP/1.1 200 OK
-X-Powered-By: Express
-Date: Tue, 20 Dec 2022 07:31:33 GMT
-Connection: close
-Content-Length: 0
-```
-
-Call the following URL and test if registration exists <YOUR ID>:
-```
-### Existance of a Device - Success Case
+### Existance of a Model - Success Case
 
 #Request
-http://localhost:3000/exists/TN10BJ8856
+http://localhost:3000/model/get/TN10BJ8856
 
 #Response
 HTTP/1.1 200 OK
@@ -109,7 +95,7 @@ TRUE
 ### Existance of a Device - Failure Case
 
 #Request
-http://localhost:3000/exists/TN10BJ8858
+http://localhost:3000/model/get/TN10BJ8858
 
 #Response
 HTTP/1.1 200 OK
@@ -121,4 +107,32 @@ Date: Tue, 20 Dec 2022 07:33:24 GMT
 Connection: close
 
 FALSE
+```
+
+Call the following URL and remove your existing model <YOUR ID>:
+
+```
+#Request
+http://localhost:3000/model/remove/TN10BJ8856
+
+#Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Date: Tue, 20 Dec 2022 07:31:33 GMT
+Connection: close
+Content-Length: 0
+```
+
+Call the following URL and send telemetry via asymmetric sync to the cloud backend <YOUR ID>:
+
+```
+#Request
+http://localhost:3000/telemetry/send/TN10BJ8856
+
+#Response
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Date: Tue, 20 Dec 2022 07:31:33 GMT
+Connection: close
+Content-Length: 0
 ```

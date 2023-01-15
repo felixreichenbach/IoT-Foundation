@@ -3,12 +3,21 @@ import express from 'express';
 import DotEnv from 'dotenv';
 DotEnv.config()
 // Define your data model.
-export const RegistrationSchema = {
-    name: 'Registration',
+export const ModelSchema = {
+    name: 'Model',
     properties: {
         _id: 'string?',
     },
     primaryKey: '_id',
+};
+
+export const TelemetrySchema = {
+    name: 'Telemetry',
+    properties: {
+        _id: 'string?',
+    },
+    primaryKey: '_id',
+    asymmetric: true
 };
 
 console.log(`Connection to ${process.env.REALM_APP_ID} App`)
@@ -22,7 +31,7 @@ await realm_app.logIn(Realm.Credentials.anonymous());
 
 // Create a `SyncConfiguration` object.
 const config = {
-    schema: [RegistrationSchema],
+    schema: [ModelSchema, TelemetrySchema], //, TelemetrySchema],
     sync: {
         // Use the previously-authenticated anonymous user.
         user: realm_app.currentUser,
@@ -36,9 +45,10 @@ const config = {
                     // Get objects that match your object model, then filter them
                     // the `owner_id` queryable field
                     //realm.objects("Task").filtered(`owner_id = ${app.currentUser.id}`)
-                    realm.objects("Registration")
+                    realm.objects("Model")
                 );
             },
+            rerunOnOpen: true,
         },
     },
 };
@@ -47,45 +57,58 @@ const realm = await Realm.open(config);
 const express_app = express()
 const port = 3000
 
-express_app.get('/exists/:id', (req, res) => {
-    res.send(exists(req.params.id));
+express_app.get('/model/create/:id', (req, res) => {
+    res.send(create(req.params.id));
 })
 
-express_app.get('/register/:id', (req, res) => {
-    res.send(register(req.params.id));
+express_app.get('/model/get/:id', (req, res) => {
+    res.send(get(req.params.id));
 })
 
-express_app.get('/unregister/:id', (req, res) => {
-    res.send(unregister(req.params.id));
+express_app.get('/model/remove/:id', (req, res) => {
+    res.send(remove(req.params.id));
 })
 
-function exists(id) {
+express_app.get('/telemetry/send/:id', (req, res) => {
+    res.send(send(req.params.id));
+})
+
+function get(id) {
     // search for a realm object with a primary key that is a string
-    const result = realm.objectForPrimaryKey("Registration", id);
+    const result = realm.objectForPrimaryKey("Model", id);
     console.log("Requested: " + id);
     console.log("Found: " + JSON.stringify(result));
     if (result) {
-        return "TRUE";
+        return result;
     } else {
-        return "FALSE";
+        return "Not Found";
     }
 }
 
-function register(id) {
+function create(id) {
     let result;
     realm.write(() => {
         // Create the registration
-        result = realm.create("Registration", { _id: id }, Realm.UpdateMode.All);
+        result = realm.create("Model", { _id: id }, Realm.UpdateMode.All);
     });
     // return newly created registration object
     return result;
 }
 
-function unregister(id) {
+function remove(id) {
     let result;
     realm.write(() => {
         // Delete the registration.
-        result = realm.delete(realm.objectForPrimaryKey("Registration", id));
+        result = realm.delete(realm.objectForPrimaryKey("Model", id));
+    });
+    return result;
+}
+
+function send(id) {
+    let result;
+    realm.write(() => {
+        // Delete the registration.
+        result = realm.create("Telemetry", { _id: id });
     });
     return result;
 }

@@ -1,7 +1,7 @@
 {
   "name": "device",
   "version": "1.0.0",
-  "description": "An IoT device",
+  "description": "An IoT Edge Device",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
