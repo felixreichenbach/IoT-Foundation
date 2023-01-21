@@ -1,6 +1,8 @@
 import Realm from "realm";
 import express from 'express';
 import DotEnv from 'dotenv';
+import { ObjectId } from 'bson';
+
 DotEnv.config()
 // Define your data model.
 export const ModelSchema = {
@@ -14,7 +16,8 @@ export const ModelSchema = {
 export const TelemetrySchema = {
     name: 'Telemetry',
     properties: {
-        _id: 'string?',
+        _id: 'objectId?',
+        event: "{}?",
     },
     primaryKey: '_id',
     asymmetric: true
@@ -54,8 +57,9 @@ const config = {
 };
 const realm = await Realm.open(config);
 
-const express_app = express()
-const port = 3000
+const express_app = express();
+const port = 3000;
+express_app.use(express.json());
 
 express_app.get('/model/create/:id', (req, res) => {
     res.send(create(req.params.id));
@@ -69,8 +73,8 @@ express_app.get('/model/remove/:id', (req, res) => {
     res.send(remove(req.params.id));
 })
 
-express_app.get('/telemetry/send/:id', (req, res) => {
-    res.send(send(req.params.id));
+express_app.post('/event/', (req, res) => {
+    res.send(send(req.body));
 })
 
 function get(id) {
@@ -104,11 +108,12 @@ function remove(id) {
     return result;
 }
 
-function send(id) {
+function send(event) {
     let result;
     realm.write(() => {
-        // Delete the registration.
-        result = realm.create("Telemetry", { _id: id });
+        // write event to the Realm database
+        result = realm.create("Telemetry", { _id: new ObjectId(), event: event });
+        return result;
     });
     return result;
 }
